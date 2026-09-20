@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Edit Faculty' if mode == 'edit' else 'Add Faculty' }}{% endblock %}
+{% block content %}
+<div class="form-card"><h1>{{ 'Edit Faculty' if mode == 'edit' else 'Add Faculty' }}</h1>
+<form method="post">
+<label>Name *</label><input type="text" name="name" required value="{{ member.name if member else '' }}">
+<label>Email</label><input type="email" name="email" value="{{ member.email if member else '' }}">
+<label>Department</label><input type="text" name="department" value="{{ member.department if member else '' }}">
+<label>Subject</label><input type="text" name="subject" value="{{ member.subject if member else '' }}">
+<div class="form-actions"><button class="button" type="submit">Save Faculty</button><a class="button secondary" href="{{ url_for('faculty_list') }}">Cancel</a></div>
+</form></div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h1>Dashboard</h1>
+<p class="muted">All application data is stored in MongoDB Atlas.</p>
+<div class="cards">
+    <div class="card"><h3>Students</h3><div class="number">{{ student_count }}</div><a class="button" href="{{ url_for('students_list') }}">Manage Students</a></div>
+    <div class="card"><h3>Faculty</h3><div class="number">{{ faculty_count }}</div><a class="button" href="{{ url_for('faculty_list') }}">Manage Faculty</a></div>
+    <div class="card"><h3>Attendance Records</h3><div class="number">{{ attendance_count }}</div><a class="button" href="{{ url_for('view_attendance') }}">View Attendance</a></div>
+    <div class="card warning-card"><h3>Low Attendance</h3><div class="number">{{ low_count }}</div><a class="button" href="{{ url_for('alerts') }}">View Alerts</a></div>
+</div>
+<div class="panel"><h2>Quick Actions</h2><div class="actions">
+    <a class="button" href="{{ url_for('add_student') }}">+ Add Student</a>
+    <a class="button" href="{{ url_for('add_faculty') }}">+ Add Faculty</a>
+    <a class="button" href="{{ url_for('mark_attendance') }}">Mark Attendance</a>
+</div></div>
+{% endblock %}

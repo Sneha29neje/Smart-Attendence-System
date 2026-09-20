@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Mark Attendance{% endblock %}
+{% block content %}
+<div class="page-header"><div><h1>Mark Attendance</h1><p class="muted">Choose Present or Absent for every student.</p></div></div>
+{% if not students %}<div class="panel"><p>No students are available. Add students first.</p><a class="button" href="{{ url_for('add_student') }}">Add Student</a></div>
+{% else %}
+<form method="post" class="panel">
+<label>Attendance Date *</label><input class="date-input" type="date" name="attendance_date" required value="{{ selected_date }}">
+<div class="table-wrap"><table><thead><tr><th>Roll No</th><th>Name</th><th>Status</th></tr></thead><tbody>
+{% for student in students %}{% set current = status_map.get(student._id|string, 'Present') %}<tr><td>{{ student.roll_no }}</td><td>{{ student.name }}</td><td>
+<select name="status_{{ student._id }}"><option value="Present" {% if current == 'Present' %}selected{% endif %}>Present</option><option value="Absent" {% if current == 'Absent' %}selected{% endif %}>Absent</option></select>
+</td></tr>{% endfor %}
+</tbody></table></div>
+<div class="form-actions"><button class="button" type="submit">Save Attendance</button><a class="button secondary" href="{{ url_for('view_attendance') }}">Cancel</a></div>
+</form>{% endif %}
+{% endblock %}

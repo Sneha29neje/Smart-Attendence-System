@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Low Attendance Alerts{% endblock %}
+{% block content %}
+<div class="page-header"><div><h1>Low Attendance Alerts</h1><p class="muted">Students below {{ limit }}% attendance.</p></div></div>
+<div class="table-wrap"><table><thead><tr><th>Roll No</th><th>Name</th><th>Department</th><th>Attendance</th><th>Action</th></tr></thead><tbody>
+{% for student in students %}<tr><td>{{ student.roll_no }}</td><td>{{ student.name }}</td><td>{{ student.department or '-' }}</td><td><span class="badge danger">{{ student.percentage }}%</span></td><td><a class="small-button" href="{{ url_for('students_list') }}">Student List</a></td></tr>
+{% else %}<tr><td colspan="5" class="empty">No students are currently below {{ limit }}%.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}

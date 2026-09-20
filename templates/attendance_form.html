@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Edit Attendance{% endblock %}
+{% block content %}
+<div class="form-card"><h1>Edit Attendance</h1><p><strong>Student:</strong> {{ record.student_name }}</p><p><strong>Roll No:</strong> {{ record.roll_no }}</p>
+<form method="post"><label>Attendance Date *</label><input type="date" name="attendance_date" required value="{{ record.attendance_date }}">
+<label>Status *</label><select name="status" required><option value="Present" {% if record.status == 'Present' %}selected{% endif %}>Present</option><option value="Absent" {% if record.status == 'Absent' %}selected{% endif %}>Absent</option></select>
+<div class="form-actions"><button class="button" type="submit">Update Attendance</button><a class="button secondary" href="{{ url_for('view_attendance') }}">Cancel</a></div></form></div>
+{% endblock %}
